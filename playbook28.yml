@@ -1,0 +1,24 @@
+---
+ - name: install nginx on al servers
+   hosts: all
+   become: true
+   tasks:
+    - name: install nginx
+      apt:
+        name: nginx
+        state: present
+        update_cache: yes
+    - name: copy the index.html file
+      copy:
+        src: index.nginx-debian.html
+        dest: /var/www/html
+      notify: restart the nginx
+   handlers:     
+    - name: restart the nginx
+      service:
+        name: nginx
+        state: restarted    
+...
+
+
+

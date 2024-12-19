@@ -1,0 +1,13 @@
+---
+ - name: installations using host scope variables 
+   hosts: 172.31.8.104
+   tasks:
+    - name: install tree
+      apt:    
+         name: "{{g}}"
+         state: "{{h}}"
+         update_cache: "{{i}}"
+...
+
+         
+

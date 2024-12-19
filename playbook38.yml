@@ -1,0 +1,11 @@
+---
+ - name: create directories 
+   hosts: all
+   tasks:
+     - name: create directories
+       file:
+         name: "/home/dir1{{item}}"
+         state: directory
+       with_items: "{{range(1,8) | list}}"
+            
+

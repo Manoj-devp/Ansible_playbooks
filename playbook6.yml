@@ -1,0 +1,20 @@
+---
+ - name: create a new dir and copy the password file and change the user name
+   hosts: all
+   tasks:
+    - name: create a new directory
+      file: 
+        name: /tmp/dir3
+        state: directory
+    - name: copy the password into a new directory
+      copy:
+        src: /etc/passwd
+        dest: /tmp/dir3
+    - name: change the name manoj to mahesh 
+      replace:
+        regexp: manoj
+        replace: mahesh
+        path: /tmp/dir3/passwd
+...
+
+

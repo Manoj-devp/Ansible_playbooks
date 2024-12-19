@@ -1,0 +1,17 @@
+---
+ - name: install git on different os(Ubuntu&RedHat)
+   hosts: all
+   tasks:
+     - name: install git on ubuntu
+       apt:
+         name: git
+         state: present
+         update_cache: yes
+       when: ansible_distribution == "Ubuntu"
+     - name: install git on RedHat
+       yum:
+         name: git
+         state: present
+         update_cache: yes
+       when: ansible_distribution == "RedHat"
+    

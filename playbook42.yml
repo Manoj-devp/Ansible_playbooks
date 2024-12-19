@@ -1,0 +1,39 @@
+---
+ - name: configure apache2/httpd on all servers
+   hosts: all
+   become: yes
+   tasks:
+     - name: install apache2
+       apt: 
+         name: apache2
+         state: present
+         update_cache: yes
+       when: ansible_distribution == "Ubuntu"
+     - name: install httpd
+       yum:
+         name: httpd
+         state: present
+         update_cache: yes
+       when: ansible_distribution == "RedHat"
+     - name: edit the index.html file
+       copy:
+         content: "happy birthday superstar rajini"
+         dest: /var/www/html/index.html
+     - name: restart the apache2    
+       service:
+         name: apache2
+         state: restarted
+       when: ansible_distribution == "Ubuntu"
+     - name: restart the httpd
+       service:
+         name: httpd
+         state: restarted
+       when: ansible_distribution == "RedHat"
+     - name: check url response
+       uri:
+         url: "{{item}}"
+         status_code: 200
+       loop:
+         - http://172.31.11.222
+         - http://172.31.6.200
+         - http://172.31.10.142    

@@ -1,0 +1,22 @@
+---
+- name: implementing tags
+  hosts: all
+  tasks:
+     - name: install git
+       apt: 
+         name: maven
+         state: present
+         update_cache: yes
+       tags:
+         - git_installation
+     - name: create user
+       user: 
+         name: nagarjuna
+         password: amala
+       tags: user_creation
+     - name: copy password file
+       copy:
+         src: /etc/passwd
+         dest: /tmp
+...
+

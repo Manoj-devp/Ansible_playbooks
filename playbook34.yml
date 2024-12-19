@@ -1,0 +1,13 @@
+---
+ - name: git
+   hosts: combined
+   become: true
+   tasks:
+     - name: git
+       apt:
+         name: git
+         state: present
+         update_cache: yes
+           
+        
+      

@@ -1,0 +1,10 @@
+---
+ - name: check url responce
+   uri:
+     url: "{{item}}"
+     status_code: 200
+   with_items:
+    - http://172.31.8.104
+    - http://172.31.6.200
+...
+

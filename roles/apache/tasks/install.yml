@@ -1,0 +1,8 @@
+---
+ - name: install apache on all servers
+   apt: 
+    name: apache2
+    state: present
+    update_cache: yes
+...
+

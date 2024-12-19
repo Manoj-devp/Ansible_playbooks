@@ -1,0 +1,14 @@
+---
+ - name: create multiple files using loop module
+   hosts: all
+   become: yes
+   serial: 1  
+   tasks:
+     - name: create multiple files
+       file:
+         name: /home/"{{item}}"
+         state: touch
+       with_items:
+         - file13
+         - file24
+         - file35   

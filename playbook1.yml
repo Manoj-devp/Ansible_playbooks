@@ -1,0 +1,15 @@
+---
+- name: create user on the all server
+  hosts: all
+  tasks:
+    - name: user creation
+      user:
+        name: NTR
+        password: ntr
+        home: /tmp/ntr
+        shell: /bin/bash
+        comment: "a regular user"
+        uid: 1122
+...
+
+

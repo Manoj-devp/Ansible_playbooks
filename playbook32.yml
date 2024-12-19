@@ -1,0 +1,44 @@
+---
+ - name: install apache2/httpd on the all servers
+   hosts: all
+   tasks: 
+     - block:
+         - name: install apache2
+           apt:
+              name: apache2
+              state: present
+              update_cache: yes
+       rescue:
+         - name: install httpd
+           yum:
+              name: httpd
+              state: present
+              update_cache: yes
+     - name: edit the index.html file
+       copy:
+         content: "india will win"
+         dest: /var/www/html/index.html
+     - block:
+         - name: restart the apache2
+           service:
+             name: apache2
+             state: restarted
+       rescue:
+         - name: restart the httpd
+           service:
+             name: httpd
+             state: restarted
+     - name: check status code of the servers
+       uri: 
+         url: "{{item}}"
+         status_code: 200
+       with_items:
+         - http://172.31.4.144:80
+         - http://172.31.8.104:80
+         - http://172.31.6.200:80
+...
+
+
+              
+
+

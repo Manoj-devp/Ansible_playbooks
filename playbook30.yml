@@ -1,0 +1,24 @@
+---
+ - name: install tree on all servers
+   hosts: all
+   tasks:
+      - block:    
+          - name: install tree using apt
+            apt: 
+              name: tree
+              state: present
+              update_cache: yes
+        rescue:
+          - name: install tree using yum
+            yum:
+              name: tree
+              state: present
+              update_cache: yes
+        always:
+          - name: git logs 
+            debug: 
+              msg: "installation of tree successful"                
+                     
+...
+
+               

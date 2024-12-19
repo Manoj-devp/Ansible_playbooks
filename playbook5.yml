@@ -1,0 +1,23 @@
+---
+ - name: create users and create dirs in user home dir and copy the password file and change the permisions
+   hosts: all
+   tasks: 
+     - name: create user
+       user: 
+          name: raina
+          password: raina
+          home: /tmp/raina
+     - name: create dir 
+       file:
+          name: /tmp/raina/dir2
+          state: directory
+     - name: copy the password 
+       copy: 
+          src: /etc/passwd
+          dest: /tmp/raina/dir2
+     - name: change the permissions
+       file:
+          name: /tmp/raina/dir2/passwd
+          mode: 777
+...
+

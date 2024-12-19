@@ -1,0 +1,14 @@
+---
+ - name: install git using including_tasks
+   apt:
+     name: git
+     state: present
+     update_cache: yes
+...
+
+
+
+
+
+ 
+     

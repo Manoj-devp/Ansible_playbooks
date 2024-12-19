@@ -1,0 +1,13 @@
+---
+ - name: install or uninstall s/w apploications
+   hosts: all
+   tasks:
+     - name: git install
+       apt:
+         name: "{{a}}"
+         state: "{{b}}"
+         update_cache: "{{c}}"
+...
+
+
+

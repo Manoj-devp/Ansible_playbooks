@@ -1,0 +1,14 @@
+---
+ - name: create files and create the files in it
+   hosts: all
+   tasks:
+     - name: create the directory&file
+       file: 
+         name: "/home/{{ item.dir }}/{{ item.file }}"
+         state: touch
+         recurse: yes
+       loop:
+         - {dir: 'dir1',file: 'file69'}
+         - {dir: 'dir2',file: 'file79'}
+         - {dir: 'dir3',file: 'file89'}   
+...         
